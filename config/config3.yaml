@@ -1,0 +1,110 @@
+name: "config1-example"
+description: "This is a test config for slicenet experiment"
+delay_pattern : "exponential" # or "exponential" "normal" "default"
+delay_pattern_threshold : 2 # will not be used if delay_pattern == default
+epoch: 1 # this applies to slicelets only. TBD to also include slice infra
+
+clouds:
+  - ram: 32000
+    cpu: 100
+    hdd: 20000
+    name: "wan"
+  - ram: 16000
+    cpu: 50
+    hdd: 10000
+    name: "edge"
+
+nfs:
+  - name: "NF1"
+    ram: 100
+    cpu: 9
+    hdd: 1234
+  - name: "NF2"
+    ram: 100
+    cpu: 9
+    hdd: 1234
+  - name: "NF3"
+    ram: 200
+    cpu: 1
+    hdd: 1234
+  - name: "NF4"
+    ram: 200
+    cpu: 1
+    hdd: 1234
+  - name: "NF5"
+    ram: 2000
+    cpu: 1
+    hdd: 1234
+
+policies:
+  - type: "NfMgr"
+    policy: "first-available-method"
+  - type: "SliceMgr"
+    policy: "first-available-method"
+
+slices:
+  - name : "Video Streaming"
+    composition:
+      - nf : "NF1"
+        weight : 20
+      - nf : "NF2"
+        weight : 20
+      - nf : "NF3"
+        weight : 20
+      - nf : "NF4"
+        weight : 20
+  - name : "Emergency"
+    composition:
+      - nf : "NF1"
+        weight : 50
+      - nf : "NF2"
+        weight : 34
+      - nf : "NF3"
+        weight : 60
+      - nf : "NF4"
+        weight : 12
+
+services:
+  - name : "gold"
+    composition:
+      - slice : "Emergency"
+        weight : 30
+      - slice : "Video Streaming"
+        weight : 55
+  - name : "silver"
+    composition:
+      - slice : "Video Streaming"
+        weight : 30
+
+slicelets:
+  - name : "slicelet1"
+    service : "gold"
+    duration : 6
+  - name : "slicelet2"
+    service : "silver"
+    duration : 6
+  - name : "slicelet3"
+    service : "gold"
+    duration : 6
+  - name : "slicelet4"
+    service : "gold"
+    duration : 6
+  - name : "slicelet5"
+    service : "silver"
+    duration : 6
+  - name : "slicelet6"
+    service : "gold"
+    duration : 6
+  - name : "slicelet7"
+    service : "gold"
+    duration : 6
+  - name : "slicelet8"
+    service : "silver"
+    duration : 6
+  - name : "slicelet9"
+    service : "gold"
+    duration : 6
+  - name : "slicelet10"
+    service : "gold"
+    duration : 6
+
