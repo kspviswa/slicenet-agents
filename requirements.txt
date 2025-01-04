@@ -1,4 +1,4 @@
 streamlit==1.41.1
-slicenet==0.1.0
+slicenet==0.1.1
 openai==1.59.3
 typing_extensions==4.12.2
