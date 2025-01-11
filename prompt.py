@@ -33,41 +33,41 @@ class Prompter:
         epoch: 1 # this applies to slicelets only. TBD to also include slice infra
 
         clouds:
-        - ram: 32000
-            cpu: 100
-            hdd: 20000
-            name: "wan"
+        - ram: 32
+          cpu: 10
+          hdd: 200
+          name: "wan"
 
         nfs:
         - name: "NF1"
-            ram: 100
-            cpu: 9
-            hdd: 1234
+          ram: 100
+          cpu: 9
+          hdd: 1234
 
 
         policies:
         - type: "NfMgr"
-            policy: "first-available-method"
+          policy: "first-available-method"
         - type: "SliceMgr"
-            policy: "first-available-method"
+          policy: "first-available-method"
 
         slices:
         - name : "Video Streaming"
-            composition:
-            - nf : "NF1"
-                weight : 80
+          composition:
+          - nf : "NF1"
+            weight : 80
 
 
         services:
         - name : "silver"
-            composition:
-            - slice : "Video Streaming"
-                weight : 30
+          composition:
+          - slice : "Video Streaming"
+            weight : 30
 
         slicelets:
         - name : "slicelet1"
-            service : "silver"
-            duration : 5
+          service : "silver"
+          duration : 5
         ```
 
 
