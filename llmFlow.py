@@ -90,7 +90,7 @@ class slicenetAgentFlow(Flow):
                 messages=[
                     {
                         'role' : 'user',
-                        'content' : self.state['user_prompt']
+                        'content' : self.state['prompt']
                     }
                 ])
             return result['choices'][0]['message']['content']
